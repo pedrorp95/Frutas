@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, RefreshControl, FlatList, StyleSheet, ImageBackground, ScrollView, Dimensions } from 'react-native';
+import {SafeAreaView, View, Text, RefreshControl, FlatList, StyleSheet, ImageBackground, ScrollView, Dimensions } from 'react-native';
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -12,7 +12,7 @@ export default function Frutas() {
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
+    wait(2000).then(() => setRefreshing(false), getFruits());
   }, []);
 
   function getFruits(){
@@ -28,6 +28,7 @@ export default function Frutas() {
   useEffect(() => {
     getFruits();
   }, []);
+
   let ScreenHeight = Dimensions.get("window").height;
   let ScreenWidth = Dimensions.get("window").width;
 
@@ -57,7 +58,7 @@ export default function Frutas() {
   });
 
 
-  function Filtrar({ item }) {
+  function mostrar({ item }) {
 
     return <Text style={styles.text}>Fruta: {item.name}    Precio: {item.price}</Text>
 
@@ -65,6 +66,7 @@ export default function Frutas() {
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', }}>
+      <SafeAreaView>
       <ScrollView >
         <ImageBackground source={require('./resources/fondo1.jpg')} style={styles.fondo}>
 
@@ -72,7 +74,7 @@ export default function Frutas() {
           <Text></Text>
           <FlatList
             data={frutas}
-            renderItem={Filtrar}
+            renderItem={mostrar}
             keyExtractor={item => item.id}
             refreshControl={
               <RefreshControl
@@ -83,6 +85,7 @@ export default function Frutas() {
           />
         </ImageBackground>
       </ScrollView>
+      </SafeAreaView>
     </View>
   );
 
