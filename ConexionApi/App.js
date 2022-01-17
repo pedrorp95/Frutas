@@ -16,7 +16,7 @@ return(
   screenOptions={({ route }) => ({
     tabBarIcon: ({ focused, color, size}) => {
       let iconName;
-      if(route.name === "Historia"){
+      if(route.name === "Frutas"){
         iconName = focused
         ? "library" 
         : "library-outline";
