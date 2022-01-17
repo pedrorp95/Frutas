@@ -1,92 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import {SafeAreaView, View, Text, RefreshControl, FlatList, StyleSheet, ImageBackground, ScrollView, Dimensions } from 'react-native';
+import * as React from 'react';
+import {  NavigationContainer,   } from '@react-navigation/native';
+import { createBottomTabNavigator  } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import stackFrutask from './navigation/stackFrutas';
+import stackAñadirFrutas from './navigation/stackAñadirFrutas';
 
-const wait = (timeout) => {
-  return new Promise(resolve => setTimeout(resolve, timeout));
-}
+export default function App(){
 
-export default function Frutas() {
+const Tab = createBottomTabNavigator();
 
-  const [frutas, setFrutas] = useState(null);
-  const [refreshing, setRefreshing] = React.useState(false);
+return(
 
-  const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false), getFruits());
-  }, []);
+<NavigationContainer  >
+  <Tab.Navigator 
+  screenOptions={({ route }) => ({
+    tabBarIcon: ({ focused, color, size}) => {
+      let iconName;
+      if(route.name === "Historia"){
+        iconName = focused
+        ? "library" 
+        : "library-outline";
+      } else if (route.name === "Usuarios"){
+        iconName = focused ? "person" : "person-outline";
+      }
 
-  function getFruits(){
-    fetch("http://10.0.2.2:8080/fruits")
-      .then(response => response.json())
-      .then((responseJson) => {
-        console.log('getting data from fetch', responseJson);
-        setFrutas(responseJson);
-      })
-      .catch(error => console.log(error));
-  }
-
-  useEffect(() => {
-    getFruits();
-  }, []);
-
-  let ScreenHeight = Dimensions.get("window").height;
-  let ScreenWidth = Dimensions.get("window").width;
-
-  const styles = StyleSheet.create({
-
-    fondo: {
-      width: ScreenWidth, height: ScreenHeight
+      return <Ionicons name={iconName} size={30} style={{color:'#307dc6'}}/>
+        
     },
-    text: {
-      textAlign: 'center', color: '#29273d',
-      lineHeight: 30, fontSize: 15,
-    },
-    titulo: {
-      width: ScreenWidth, height: 110, textAlign: 'center', color: '#d6d5de',
-      fontSize: 20, backgroundColor: '#1c2d3e', paddingTop: 40
-    },
-    boton: {
-      backgroundColor: '#1c2d3e', alignSelf: 'center', borderRadius: 8,
-      width: 150, height: 50, paddingTop: 14, paddingLeft: 18,
-      elevation: 25
-      
-  },
-  textBoton: {
-    paddingLeft: 23, fontSize: 16, color: '#d6d5de'
-},
+     
+    
+  })}
+  >
+    <Tab.Screen name="Frutas" component={stackFrutask} options={{ headerShown:false }} />
 
-  });
+    <Tab.Screen name="Añadir" component={stackAñadirFrutas} options={{ headerShown:false }}/>
+    </Tab.Navigator>
+</NavigationContainer>
 
-
-  function mostrar({ item }) {
-
-    return <Text style={styles.text}>Fruta: {item.name}    Precio: {item.price}</Text>
-
-  }
-
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', }}>
-      <SafeAreaView>
-      <ScrollView >
-        <ImageBackground source={require('./resources/fondo1.jpg')} style={styles.fondo}>
-
-          <Text style={styles.titulo}>Estas son las frutas</Text>
-          <Text></Text>
-          <FlatList
-            data={frutas}
-            renderItem={mostrar}
-            keyExtractor={item => item.id}
-            refreshControl={
-              <RefreshControl
-                refreshing={refreshing}
-                onRefresh={onRefresh}
-              />
-            }
-          />
-        </ImageBackground>
-      </ScrollView>
-      </SafeAreaView>
-    </View>
-  );
-
+);
 }
