@@ -39,7 +39,7 @@ export default function Frutas() {
   const styles = StyleSheet.create({
 
     fruta:{
-      width:50,height:50, 
+      width:88,height:64, 
     },
     fondo: {
       width: ScreenWidth, height: ScreenHeight
@@ -56,7 +56,7 @@ export default function Frutas() {
       width: ScreenWidth, height: 30, alignSelf: 'center',
     },
     caja1:{
-      width: 1,height:10, paddingTop: 10, paddingLeft: 40, marginTop: 5 
+      width: 1,height:10, paddingTop: 0, paddingLeft: 40, marginTop: 5 
     },
     caja2:{
       width: ScreenWidth, alignItems: 'flex-end', paddingRight: '10%', marginTop: 10
@@ -66,8 +66,15 @@ export default function Frutas() {
 
   function mostrarImagen(name) {
     
-    return name ==='Piña'?<Image  style={styles.fruta} source={require('./../resources/piña.jpg')} /> : 
-    <Image  style={styles.fruta} source={require('./../resources/peras.jpg')} />;
+    return (name ==='Piña')?<Image  style={styles.fruta} source={require('./../resources/piña.png')} />
+    : (name ==='naranja')?<Image  style={styles.fruta} source={require('./../resources/naranjas.png')} />
+    : (name ==='fresas')?<Image  style={styles.fruta} source={require('./../resources/fresas.png')} />
+    : (name ==='manzana')?<Image  style={styles.fruta} source={require('./../resources/manzana.png')} />
+    : (name ==='platanos')?<Image  style={styles.fruta} source={require('./../resources/platanos.png')} />
+    : (name ==='uvas')?<Image  style={styles.fruta} source={require('./../resources/uvas.png')} />
+    : (name ==='melocoton')?<Image  style={styles.fruta} source={require('./../resources/melocoton.png')} />
+    : (name ==='kiwi')?<Image  style={styles.fruta} source={require('./../resources/kiwis.png')} />
+    : <Image  style={styles.fruta} source={require('./../resources/peras.png')} />;
   }
 
   function mostrar({ item }) {
