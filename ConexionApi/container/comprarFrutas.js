@@ -1,47 +1,98 @@
-import React from 'react';
-import {TextInput, Text, View, Button,StyleSheet} from 'react-native';
+import React, { useState } from 'react';
+import {TextInput, Text, SafeAreaView, TouchableOpacity,StyleSheet,Dimensions,ImageBackground} from 'react-native';
 
-//PANTALLA BUSQUEDA     -----------------------------SCREEN-----------------------------
+//PANTALLA COMPRA     -----------------------------SCREEN comprarFrutas-----------------------------
 function comprarFrutas({navigation}){
-  const [text, onChangeNumber] = React.useState(null);
-    return(
-      <View style={style.fondo}>
-        <Text style={style.text}></Text>
+    const [fruit,setFruit] = useState('');
+    const [price,setPrice] = useState('');
+    const [text] = React.useState(null);
+    const onPress = () => {
+        fetch('http://10.0.2.2:8080/fruits', {
+        method: 'POST',
+         headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          "name" : fruit,
+          "price" : price
+        }),
+    })
+    .then ((responseJson) => {
+      console.log('gettin data from fetch',responseJson);
+      Alert.alert("Fruta añadida correctamente");
+      setFruit(fruit);
+      setPrice(price);
+    }) 
+  .catch(error => console.log(error));
+    }
+
+    return(  
+      <SafeAreaView >
+        <ImageBackground source={require('./../resources/fondo1.jpg')} style={styles.fondo} >
         <TextInput
-        style={style.input}
-        onChangeText={x => onChangeNumber(x)}
+        styles={styles.boton}
         value={text}
-        placeholder="Introduce Fruta"
+        placeholder="Introduce Nombre Fruta"
         keyboardType="default"
+        onChangeText={x => setFruit (x)}
       />
-        <Button
-          title="Añadir Fruta"
-          onPress={() => navigation.navigate('Lista de Usuarios',{edad:number})}
-        />
-      </View>
+      <TextInput
+        styles={styles.boton}
+        value={text}
+        placeholder="Introduce Precio Fruta"
+        keyboardType="numeric"
+        onChangeText={x => setPrice (x)}
+      />
+       <TouchableOpacity styles={styles.text}
+         title="Añadir Fruta"
+         onPress={onPress}>
+        <Text styles={styles.text}>Añadir fruta</Text>
+      </TouchableOpacity>
+      </ImageBackground>
+      </SafeAreaView>
     );
   }
 
   //----------------------------------------------------------------------------------------ESTILO----------------------------------------------------------------------------------------
-  const style = StyleSheet.create({
-    fondo:{
-      backgroundColor: '#C8FDFF'
+  let ScreenHeight = Dimensions.get("window").height;
+  let ScreenWidth = Dimensions.get("window").width;
+
+  const styles = StyleSheet.create({
+
+    fruta:{
+      width:50,height:50, 
     },
-    header:{
-      textAlign:'center',
-      backgroundColor: '#C8FDFF'
+    fondo: {
+      width: ScreenWidth, height: ScreenHeight
     },
-    text:{
-      fontSize: 15,
-      color: 'black',
-      textAlign:'center',
-      fontWeight: 'bold'
+    text: {
+      textAlign: 'left', color: '#29273d',
+      paddingTop: 5, marginRight: 40, fontSize: 15,
     },
-    input: {
-      marginTop: 465,
-      width: 150,
-      height: 40,
-      borderWidth: 1
+    titulo: {
+      width: ScreenWidth, height: 80, textAlign: 'center', color: '#d6d5de',
+      fontSize: 20, backgroundColor: '#1c2d3e', paddingTop: 25
+    },
+    linea: {
+      width: ScreenWidth, height: 30, alignSelf: 'center',
+    },
+    caja1:{
+      width: 1,height:10, paddingTop: 10, paddingLeft: 40, marginTop: 5 
+    },
+    caja2:{
+      width: ScreenWidth, alignItems: 'flex-end', paddingRight: '10%', marginTop: 10
+    },
+    boton: {
+
+        backgroundColor: '#1c2d3e', alignSelf: 'center', borderRadius: 8,
+
+        width: 150, height: 50, paddingTop: 14, paddingLeft: 18,
+
+        elevation: 25,
+
+       
+
     }
-  })
+  });
   export default comprarFrutas;

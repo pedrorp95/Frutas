@@ -16,7 +16,6 @@ export default function StackAñadirFrutas() {
          headerStyle: {
             backgroundColor: '#1c2d3e',
           },}} />
-      
     </Stack.Navigator>
   );
 }
