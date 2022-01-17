@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Image, SafeAreaView, View, Text, RefreshControl, FlatList, StyleSheet, ImageBackground, ScrollView, Dimensions } from 'react-native';
+import { Image, SafeAreaView, View, Text, RefreshControl, FlatList, StyleSheet, ImageBackground, Dimensions } from 'react-native';
 
 
 
