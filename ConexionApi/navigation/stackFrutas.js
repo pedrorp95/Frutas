@@ -9,7 +9,7 @@ export default function StackFrutas() {
   return (
   <Stack.Navigator>
 
-      <Stack.Screen name='Frutas' component={Frutas} options={{ 
+      <Stack.Screen name='Frutas2' component={Frutas} options={{ 
         headerTitleStyle:{
           color:'#d6d5de', 
         },
