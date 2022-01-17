@@ -16,12 +16,12 @@ return(
   screenOptions={({ route }) => ({
     tabBarIcon: ({ focused, color, size}) => {
       let iconName;
-      if(route.name === "Historia"){
+      if(route.name === "Frutas"){
         iconName = focused
-        ? "library" 
-        : "library-outline";
-      } else if (route.name === "Usuarios"){
-        iconName = focused ? "person" : "person-outline";
+        ? "info" 
+        : "info-outline";
+      } else if (route.name === "Añadir"){
+        iconName = focused ? "md-basket-sharp" : "md-basket-sharp-outline";
       }
 
       return <Ionicons name={iconName} size={30} style={{color:'#307dc6'}}/>
