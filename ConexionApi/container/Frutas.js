@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Image, SafeAreaView, View, Text, RefreshControl, FlatList, StyleSheet, ImageBackground, Dimensions } from 'react-native';
-import {Picker} from "@react-native-picker/picker";
-import { ScrollView } from 'react-native-gesture-handler';
+
+
+
 
 export default function Frutas() {
 
@@ -98,10 +99,9 @@ export default function Frutas() {
     </View>
   }
 
-  const [selectedValue, setSelectedValue] = useState("java");
   return (
 
-    <ScrollView>
+    <SafeAreaView>
       <ImageBackground source={require('./../resources/fondo1.jpg')} style={styles.fondo}>
 
 
@@ -121,6 +121,6 @@ export default function Frutas() {
         />
 
       </ImageBackground>
-    </ScrollView>
+    </SafeAreaView>
   );
 }

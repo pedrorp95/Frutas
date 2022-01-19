@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import {TextInput, Text, View,FlatList, RefreshControl,TouchableOpacity,StyleSheet,Dimensions,ImageBackground,Image} from 'react-native';
+import {Picker} from "@react-native-picker/picker";
 
 //PANTALLA COMPRA     -----------------------------SCREEN comprarFrutas-----------------------------------------------------------------
-function comprarFrutas({navigation}){
+function comprarFrutas(){
     const [fruit,setFruit] = useState('');
     const [price,setPrice] = useState('');
     const [text] = React.useState(null);
+    const [selectedValue, setSelectedValue] = useState("java");
+
 //-----------------------------------------------------POST API-----------------------------------------------------------------
     const onPress = () => {
         fetch('http://10.0.2.2:8080/fruits', {
@@ -42,26 +45,33 @@ function mostrarImagen(name) {
   : <Image  style={styles.fruta} source={require('./../resources/peras.png')} />;
 }
 
-function mostrar({ item }) {
-  return <View>
-    <View style={styles.caja1}>{mostrarImagen(item.name)}</View>
-    <View style={styles.caja2}>
-    <Text style={styles.text}> {item.name}      Precio: {item.price}</Text>
-    <Image style={styles.linea} source={require('./../resources/linea.png')} />
-    </View>
-  </View>
-}
 //--------------------------------------------RETURN-------------------------------------------------------------------
     return(  
       <View>
         <ImageBackground source={require('./../resources/fondo1.jpg')} style={styles.fondo} >
         <Text style={styles.titulo}>Añadir</Text>
-        <TextInput style={styles.input1}
+        {/* <TextInput style={styles.input1}
         value={text}
         placeholder="Introduce Nombre Fruta"
         keyboardType="default"
         onChangeText={x => setFruit (x)}
-      />
+      /> */}
+
+      <Picker
+        selectedValue={selectedValue}
+        style={styles.Picker}
+        onValueChange={(itemValue) => setFruit(itemValue)}
+      >
+        <Picker.Item label="Pera" value="Pera" />
+        <Picker.Item label="Manzana" value="Manzana" />
+        <Picker.Item label="Melocoton" value="Melocoton" />
+        <Picker.Item label="Piña" value="Piña" />
+        <Picker.Item label="Uva" value="Uva" />
+        <Picker.Item label="Fresa" value="Fresa" />
+        <Picker.Item label="Platano" value="Platano" />
+        <Picker.Item label="Naranja" value="Naranja" />
+        <Picker.Item label="Kiwi" value="Kiwi" />
+      </Picker>
 
       <TextInput style={styles.input2}
         value={text}
@@ -76,9 +86,7 @@ function mostrar({ item }) {
         <Text style={styles.text}>Añadir fruta</Text>
         <Image style={styles.imagen} source={require('./../resources/compra.png')}/> 
       </TouchableOpacity>
-
-      
-
+      <Text>{fruit}</Text>
       </ImageBackground>
       </View>
     );
@@ -94,8 +102,16 @@ function mostrar({ item }) {
     text:{
       color:"#CCD4E3",
     },
+    Picker:{
+      height: 50, 
+      width: 150,
+      backgroundColor:"#28354B",
+      marginTop:20,
+      marginLeft:13,
+      color: 'white'
+    },
     input1:{
-        marginTop:10,
+        marginTop:20,
         height: 40,
         width: 170,
         margin: 12,
@@ -103,11 +119,15 @@ function mostrar({ item }) {
         backgroundColor:"#28354B"
     },
     input2:{
+      marginTop:30,
         height: 40,
         width: 170,
         margin: 12,
         padding: 10,
-        backgroundColor:"#28354B"
+        backgroundColor:"white",
+        elevation: 15,
+        borderWidth:1
+        
     },
     boton:{
       height: 40,
