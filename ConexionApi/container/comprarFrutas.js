@@ -86,7 +86,6 @@ function mostrarImagen(name) {
         <Text style={styles.text}>Añadir fruta</Text>
         <Image style={styles.imagen} source={require('./../resources/compra.png')}/> 
       </TouchableOpacity>
-      <Text>{fruit}</Text>
       </ImageBackground>
       </View>
     );
