@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Image, SafeAreaView, View, Text, RefreshControl, FlatList, StyleSheet, ImageBackground, Dimensions } from 'react-native';
-
-
+import { TouchableOpacity, Button, Image, SafeAreaView, View, Text, RefreshControl, FlatList, StyleSheet, ImageBackground, Dimensions } from 'react-native';
+import {Picker} from "@react-native-picker/picker";
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function Frutas() {
 
@@ -38,8 +38,8 @@ export default function Frutas() {
 
   const styles = StyleSheet.create({
 
-    fruta:{
-      width:88,height:64, 
+    fruta: {
+      width: 88, height: 64,
     },
     fondo: {
       width: ScreenWidth, height: ScreenHeight
@@ -55,63 +55,75 @@ export default function Frutas() {
     linea: {
       width: ScreenWidth, height: 30, alignSelf: 'center',
     },
-    caja1:{
-      width: 1,height:10, paddingTop: 0, paddingLeft: 40, marginTop: 5 
+    caja1: {
+      width: 1, height: 10, paddingTop: 0, paddingLeft: 40, marginTop: 5
     },
-    caja2:{
+    caja2: {
       width: ScreenWidth, alignItems: 'flex-end', paddingRight: '10%', marginTop: 10
-    }
+    },
+    boton: {
+      backgroundColor: '#1c2d3e', alignSelf: 'center', borderRadius: 8,
+      width: 150, height: 50, paddingLeft: 30,
+      elevation: 25,
+
+    },
 
   });
 
   function mostrarImagen(name) {
-    
-    return (name ==='Piña')?<Image  style={styles.fruta} source={require('./../resources/piña.png')} />
-    : (name ==='naranja')?<Image  style={styles.fruta} source={require('./../resources/naranjas.png')} />
-    : (name ==='fresas')?<Image  style={styles.fruta} source={require('./../resources/fresas.png')} />
-    : (name ==='manzana')?<Image  style={styles.fruta} source={require('./../resources/manzana.png')} />
-    : (name ==='platanos')?<Image  style={styles.fruta} source={require('./../resources/platanos.png')} />
-    : (name ==='uvas')?<Image  style={styles.fruta} source={require('./../resources/uvas.png')} />
-    : (name ==='melocoton')?<Image  style={styles.fruta} source={require('./../resources/melocoton.png')} />
-    : (name ==='kiwi')?<Image  style={styles.fruta} source={require('./../resources/kiwis.png')} />
-    : <Image  style={styles.fruta} source={require('./../resources/peras.png')} />;
+
+    return (name === 'Piña') ? <Image style={styles.fruta} source={require('./../resources/piña.png')} />
+      : (name === 'naranja') ? <Image style={styles.fruta} source={require('./../resources/naranjas.png')} />
+      : (name === 'fresas') ? <Image style={styles.fruta} source={require('./../resources/fresas.png')} />
+      : (name === 'manzana') ? <Image style={styles.fruta} source={require('./../resources/manzana.png')} />
+      : (name === 'platanos') ? <Image style={styles.fruta} source={require('./../resources/platanos.png')} />
+      : (name === 'uvas') ? <Image style={styles.fruta} source={require('./../resources/uvas.png')} />
+      : (name === 'melocoton') ? <Image style={styles.fruta} source={require('./../resources/melocoton.png')} />
+      : (name === 'kiwi') ? <Image style={styles.fruta} source={require('./../resources/kiwis.png')} />
+      : <Image style={styles.fruta} source={require('./../resources/peras.png')} />;
   }
 
   function mostrar({ item }) {
 
     return <View>
-      
+
       <View style={styles.caja1}>{mostrarImagen(item.name)}</View>
-      
+
       <View style={styles.caja2}>
-      <Text style={styles.text}> {item.name}      Precio: {item.price}</Text>
-      <Image style={styles.linea} source={require('./../resources/linea.png')} />
+        <Text style={styles.text}> {item.name}      Precio: {item.price}</Text>
+        <Image style={styles.linea} source={require('./../resources/linea.png')} />
       </View>
-    
+
     </View>
 
   }
 
+  const [selectedValue, setSelectedValue] = useState("java");
   return (
-      <SafeAreaView>
-          <ImageBackground source={require('./../resources/fondo1.jpg')} style={styles.fondo}>
+    <ScrollView>
+      <ImageBackground source={require('./../resources/fondo1.jpg')} style={styles.fondo}>
 
-            <Text style={styles.titulo}>Frutas</Text>
-            {/* <Text >Esta Son las frutas disponibles:</Text> */}
-            <FlatList
-              data={frutas}
-              renderItem={mostrar}
-              keyExtractor={item => item.id}
-              refreshControl={
-                <RefreshControl
-                  refreshing={refreshing}
-                  onRefresh={onRefresh}
-                />
-              }
+
+
+        <Text style={styles.titulo}>Frutas</Text>
+        {/* <Text >Esta Son las frutas disponibles:</Text> */}
+        
+        <FlatList
+          data={frutas}
+          renderItem={mostrar}
+          keyExtractor={item => item.id}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
             />
-            <Image style={styles.linea} source={require('./../resources/linea.png')} />
-          </ImageBackground>
-      </SafeAreaView>
+          }
+        />
+
+        
+
+      </ImageBackground>
+    </ScrollView>
   );
 
 }

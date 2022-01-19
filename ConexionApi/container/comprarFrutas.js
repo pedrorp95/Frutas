@@ -49,6 +49,9 @@ function comprarFrutas({navigation}){
          onPress={onPress}>
         <Text styles={styles.text}>Añadir fruta</Text>
       </TouchableOpacity>
+
+      
+
       </ImageBackground>
       </SafeAreaView>
     );
