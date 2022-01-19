@@ -78,24 +78,18 @@ export default function Frutas() {
   }
 
   function mostrar({ item }) {
-
     return <View>
-      
       <View style={styles.caja1}>{mostrarImagen(item.name)}</View>
-      
       <View style={styles.caja2}>
       <Text style={styles.text}> {item.name}      Precio: {item.price}</Text>
       <Image style={styles.linea} source={require('./../resources/linea.png')} />
       </View>
-    
     </View>
-
   }
 
   return (
       <SafeAreaView>
           <ImageBackground source={require('./../resources/fondo1.jpg')} style={styles.fondo}>
-
             <Text style={styles.titulo}>Frutas</Text>
             {/* <Text >Esta Son las frutas disponibles:</Text> */}
             <FlatList
@@ -113,5 +107,4 @@ export default function Frutas() {
           </ImageBackground>
       </SafeAreaView>
   );
-
 }

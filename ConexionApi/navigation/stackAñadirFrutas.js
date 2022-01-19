@@ -13,6 +13,7 @@ export default function StackAñadirFrutas() {
         headerTitleStyle:{
           color:'#d6d5de', 
         },
+        headerShown:false,
          headerStyle: {
             backgroundColor: '#1c2d3e',
           },}} />

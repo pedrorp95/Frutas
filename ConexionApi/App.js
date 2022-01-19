@@ -10,7 +10,6 @@ export default function App(){
 const Tab = createBottomTabNavigator();
 
 return(
-
 <NavigationContainer  >
   <Tab.Navigator 
   screenOptions={({ route }) => ({
@@ -19,9 +18,9 @@ return(
       if(route.name === "Frutas"){
         iconName = focused
         ? "info" 
-        : "info-outline";
+        : "info";
       } else if (route.name === "Añadir"){
-        iconName = focused ? "md-basket-sharp" : "md-basket-sharp-outline";
+        iconName = focused ? "info" : "info";
       }
 
       return <Ionicons name={iconName} size={30} style={{color:'#307dc6'}}/>
@@ -36,6 +35,5 @@ return(
     <Tab.Screen name="Añadir" component={stackAñadirFrutas} options={{ headerShown:false }}/>
     </Tab.Navigator>
 </NavigationContainer>
-
 );
 }
