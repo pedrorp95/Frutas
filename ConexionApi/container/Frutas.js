@@ -84,22 +84,28 @@ export default function Frutas() {
   }
 
   function mostrar({ item }) {
-
     return <View>
+<<<<<<< HEAD
 
       <View style={styles.caja1}>{mostrarImagen(item.name)}</View>
 
+=======
+      <View style={styles.caja1}>{mostrarImagen(item.name)}</View>
+>>>>>>> e1767307f7c83a167a52f656a1f6f0d6779902bd
       <View style={styles.caja2}>
         <Text style={styles.text}> {item.name}      Precio: {item.price}</Text>
         <Image style={styles.linea} source={require('./../resources/linea.png')} />
       </View>
+<<<<<<< HEAD
 
+=======
+>>>>>>> e1767307f7c83a167a52f656a1f6f0d6779902bd
     </View>
-
   }
 
   const [selectedValue, setSelectedValue] = useState("java");
   return (
+<<<<<<< HEAD
     <ScrollView>
       <ImageBackground source={require('./../resources/fondo1.jpg')} style={styles.fondo}>
 
@@ -116,6 +122,22 @@ export default function Frutas() {
             <RefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
+=======
+      <SafeAreaView>
+          <ImageBackground source={require('./../resources/fondo1.jpg')} style={styles.fondo}>
+            <Text style={styles.titulo}>Frutas</Text>
+            {/* <Text >Esta Son las frutas disponibles:</Text> */}
+            <FlatList
+              data={frutas}
+              renderItem={mostrar}
+              keyExtractor={item => item.id}
+              refreshControl={
+                <RefreshControl
+                  refreshing={refreshing}
+                  onRefresh={onRefresh}
+                />
+              }
+>>>>>>> e1767307f7c83a167a52f656a1f6f0d6779902bd
             />
           }
         />
@@ -125,5 +147,4 @@ export default function Frutas() {
       </ImageBackground>
     </ScrollView>
   );
-
 }
