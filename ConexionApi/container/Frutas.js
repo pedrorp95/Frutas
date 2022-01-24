@@ -73,11 +73,11 @@ export default function Frutas() {
 
   function mostrarImagen(name) {
 
-    return (name === 'Piña') ? <Image style={styles.fruta} source={require('./../resources/piña.png')} />
+    return (name === 'Pina') ? <Image style={styles.fruta} source={require('./../resources/pina.png')} />
       : (name === 'naranja') ? <Image style={styles.fruta} source={require('./../resources/naranjas.png')} />
-      : (name === 'fresas') ? <Image style={styles.fruta} source={require('./../resources/fresas.png')} />
+      : (name === 'fresa') ? <Image style={styles.fruta} source={require('./../resources/fresas.png')} />
       : (name === 'manzana') ? <Image style={styles.fruta} source={require('./../resources/manzana.png')} />
-      : (name === 'platanos') ? <Image style={styles.fruta} source={require('./../resources/platanos.png')} />
+      : (name === 'platano') ? <Image style={styles.fruta} source={require('./../resources/platanos.png')} />
       : (name === 'uvas') ? <Image style={styles.fruta} source={require('./../resources/uvas.png')} />
       : (name === 'melocoton') ? <Image style={styles.fruta} source={require('./../resources/melocoton.png')} />
       : (name === 'kiwi') ? <Image style={styles.fruta} source={require('./../resources/kiwis.png')} />

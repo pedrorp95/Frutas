@@ -31,20 +31,6 @@ function comprarFrutas(){
   .catch(error => console.log(error));
     }
 
-//--------------------------------------------Imagenes-----------------------------------------------------------------
-function mostrarImagen(name) {
-    
-  return (name ==='piña')?<Image  style={styles.fruta} source={require('./../resources/piña.png')} />
-  : (name ==='naranja')?<Image  style={styles.fruta} source={require('./../resources/naranjas.png')} />
-  : (name ==='fresa')?<Image  style={styles.fruta} source={require('./../resources/fresas.png')} />
-  : (name ==='manzana')?<Image  style={styles.fruta} source={require('./../resources/manzana.png')} />
-  : (name ==='platano')?<Image  style={styles.fruta} source={require('./../resources/platanos.png')} />
-  : (name ==='uva')?<Image  style={styles.fruta} source={require('./../resources/uvas.png')} />
-  : (name ==='melocoton')?<Image  style={styles.fruta} source={require('./../resources/melocoton.png')} />
-  : (name ==='kiwi')?<Image  style={styles.fruta} source={require('./../resources/kiwis.png')} />
-  : <Image  style={styles.fruta} source={require('./../resources/peras.png')} />;
-}
-
 //--------------------------------------------RETURN-------------------------------------------------------------------
     return(  
       <View>
@@ -58,14 +44,14 @@ function mostrarImagen(name) {
       /> */}
 
       <Picker
-        selectedValue={selectedValue}
+        selectedValue={fruit}
         style={styles.Picker}
         onValueChange={(itemValue) => setFruit(itemValue)}
       >
         <Picker.Item label="Pera" value="Pera" />
         <Picker.Item label="Manzana" value="Manzana" />
         <Picker.Item label="Melocoton" value="Melocoton" />
-        <Picker.Item label="Piña" value="Piña" />
+        <Picker.Item label="Pina" value="Pina" />
         <Picker.Item label="Uva" value="Uva" />
         <Picker.Item label="Fresa" value="Fresa" />
         <Picker.Item label="Platano" value="Platano" />
