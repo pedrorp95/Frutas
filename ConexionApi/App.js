@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {  NavigationContainer,   } from '@react-navigation/native';
 import { createBottomTabNavigator  } from '@react-navigation/bottom-tabs';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import stackFrutas from './navigation/stackFrutas';
 import stackAñadirFrutas from './navigation/stackAñadirFrutas';
 
@@ -17,13 +17,13 @@ return(
       let iconName;
       if(route.name === "Frutas"){
         iconName = focused
-        ? "down" 
-        : "info-outline";
+        ? "add-circle" 
+        : "add-circle-outline";
       } else if (route.name === "Añadir"){
-        iconName = focused ? "save" : "save-outline";
+        iconName = focused ? "add-circle" : "add-circle-outline";
       }
 
-      return <AntDesign name={iconName} size={30} style={{color:'#307dc6'}}/>
+      return <Ionicons name={iconName} size={30} style={{color:'#307dc6'}}/>
         
     },
      

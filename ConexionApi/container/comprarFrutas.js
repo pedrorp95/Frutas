@@ -7,7 +7,6 @@ function comprarFrutas(){
     const [fruit,setFruit] = useState('');
     const [price,setPrice] = useState('');
     const [text] = React.useState(null);
-    const [selectedValue, setSelectedValue] = useState("java");
 
 //-----------------------------------------------------POST API-----------------------------------------------------------------
     const onPress = () => {
@@ -18,7 +17,7 @@ function comprarFrutas(){
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          "name" : fruit.toLowerCase(),
+          "name" : fruit,
           "price" : price
         }),
     })
@@ -36,13 +35,7 @@ function comprarFrutas(){
       <View>
         <ImageBackground source={require('./../resources/fondo1.jpg')} style={styles.fondo} >
         <Text style={styles.titulo}>Añadir</Text>
-        {/* <TextInput style={styles.input1}
-        value={text}
-        placeholder="Introduce Nombre Fruta"
-        keyboardType="default"
-        onChangeText={x => setFruit (x)}
-      /> */}
-
+        
       <Picker
         selectedValue={fruit}
         style={styles.Picker}
@@ -59,7 +52,7 @@ function comprarFrutas(){
         <Picker.Item label="Kiwi" value="Kiwi" />
       </Picker>
 
-      <TextInput style={styles.input2}
+      <TextInput style={styles.input}
         value={text}
         placeholder = "Introduce Precio Fruta"
         keyboardType="numeric"
@@ -85,25 +78,17 @@ function comprarFrutas(){
       fontSize: 20, backgroundColor: '#1c2d3e', paddingTop: 25
     },
     text:{
-      color:"#CCD4E3",
+      color:"white",
     },
     Picker:{
       height: 50, 
-      width: 150,
+      width: 200,
       backgroundColor:"#28354B",
       marginTop:20,
       marginLeft:13,
       color: 'white'
     },
-    input1:{
-        marginTop:20,
-        height: 40,
-        width: 170,
-        margin: 12,
-        padding: 10,
-        backgroundColor:"#28354B"
-    },
-    input2:{
+    input:{
       marginTop:30,
         height: 40,
         width: 170,

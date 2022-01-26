@@ -56,6 +56,9 @@ export default function Frutas() {
     linea: {
       width: ScreenWidth, height: 30, alignSelf: 'center',
     },
+    lineaFin: {
+      width: ScreenWidth, height: 30, alignSelf: 'center', marginTop:50
+    },
     caja1: {
       width: 1, height: 10, paddingTop: 0, paddingLeft: 40, marginTop: 5
     },
@@ -74,12 +77,12 @@ export default function Frutas() {
   function mostrarImagen(name) {
 
     return (name === 'Pina') ? <Image style={styles.fruta} source={require('./../resources/pina.png')} />
-      : (name === 'naranja') ? <Image style={styles.fruta} source={require('./../resources/naranjas.png')} />
-      : (name === 'fresa') ? <Image style={styles.fruta} source={require('./../resources/fresas.png')} />
-      : (name === 'manzana') ? <Image style={styles.fruta} source={require('./../resources/manzana.png')} />
-      : (name === 'platano') ? <Image style={styles.fruta} source={require('./../resources/platanos.png')} />
-      : (name === 'uvas') ? <Image style={styles.fruta} source={require('./../resources/uvas.png')} />
-      : (name === 'melocoton') ? <Image style={styles.fruta} source={require('./../resources/melocoton.png')} />
+      : (name === 'Naranja') ? <Image style={styles.fruta} source={require('./../resources/naranjas.png')} />
+      : (name === 'Fresa') ? <Image style={styles.fruta} source={require('./../resources/fresas.png')} />
+      : (name === 'Manzana') ? <Image style={styles.fruta} source={require('./../resources/manzana.png')} />
+      : (name === 'Platano') ? <Image style={styles.fruta} source={require('./../resources/platanos.png')} />
+      : (name === 'Uva') ? <Image style={styles.fruta} source={require('./../resources/uvas.png')} />
+      : (name === 'Melocoton') ? <Image style={styles.fruta} source={require('./../resources/melocoton.png')} />
       : (name === 'kiwi') ? <Image style={styles.fruta} source={require('./../resources/kiwis.png')} />
       : <Image style={styles.fruta} source={require('./../resources/peras.png')} />;
   }
@@ -106,7 +109,6 @@ export default function Frutas() {
 
 
         <Text style={styles.titulo}>Frutas</Text>
-        {/* <Text >Esta Son las frutas disponibles:</Text> */}
         
         <FlatList
           data={frutas}
@@ -119,6 +121,7 @@ export default function Frutas() {
             />
           }
         />
+        <Image style={styles.lineaFin} source={require('./../resources/linea.png')} />
 
       </ImageBackground>
     </SafeAreaView>
